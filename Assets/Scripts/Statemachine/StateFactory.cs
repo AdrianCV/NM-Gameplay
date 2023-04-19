@@ -11,7 +11,7 @@ public class StateFactory
     {
         return new IdleState(_context, this);
     }
-    public PlayerBaseState Walking()
+    public PlayerBaseState Moving()
     {
         return new MovingState(_context, this);
     }

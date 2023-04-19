@@ -96,31 +96,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _currentState.UpdateState();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (_touchingSusItem)
-            {
-                _touchingSusItem = false;
-                _susItem.SetActive(false);
-                if (_notSusItem != null)
-                {
-                    _notSusItem.SetActive(true);
-                }
-                _susBox.SetActive(true);
-            }
-            else if (_touchingNotSusItem)
-            {
-                _touchingNotSusItem = false;
-                _susItem.SetActive(true);
-                _notSusItem.SetActive(false);
-                _notSusBox.SetActive(true);
-            }
-        }
-
         GatherInput();
         Look();
     }

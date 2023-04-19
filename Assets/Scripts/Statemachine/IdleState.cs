@@ -28,7 +28,7 @@ public class IdleState : PlayerBaseState
     {
         if (_ctx.IsMovementPressed)
         {
-            SwitchState(_factory.Walking());
+            SwitchState(_factory.Moving());
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))

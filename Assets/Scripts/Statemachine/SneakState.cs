@@ -36,7 +36,7 @@ public class SneakState : PlayerBaseState
         {
             if (_ctx.IsMovementPressed)
             {
-                SwitchState(_factory.Walking());
+                SwitchState(_factory.Moving());
             }
             else
             {

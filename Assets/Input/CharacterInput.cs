@@ -44,6 +44,15 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sneak"",
+                    ""type"": ""Button"",
+                    ""id"": ""87c9a0de-c414-4787-993b-940cbace433e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -123,6 +132,17 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c3e8c0b-df3f-4a4c-a926-a0d7ad9cee16"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sneak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -133,6 +153,7 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
         m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
         m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
         m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
+        m_CharacterControls_Sneak = m_CharacterControls.FindAction("Sneak", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -196,12 +217,14 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
     private List<ICharacterControlsActions> m_CharacterControlsActionsCallbackInterfaces = new List<ICharacterControlsActions>();
     private readonly InputAction m_CharacterControls_Move;
     private readonly InputAction m_CharacterControls_Run;
+    private readonly InputAction m_CharacterControls_Sneak;
     public struct CharacterControlsActions
     {
         private @CharacterInput m_Wrapper;
         public CharacterControlsActions(@CharacterInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
         public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
+        public InputAction @Sneak => m_Wrapper.m_CharacterControls_Sneak;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -217,6 +240,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
+            @Sneak.started += instance.OnSneak;
+            @Sneak.performed += instance.OnSneak;
+            @Sneak.canceled += instance.OnSneak;
         }
 
         private void UnregisterCallbacks(ICharacterControlsActions instance)
@@ -227,6 +253,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
+            @Sneak.started -= instance.OnSneak;
+            @Sneak.performed -= instance.OnSneak;
+            @Sneak.canceled -= instance.OnSneak;
         }
 
         public void RemoveCallbacks(ICharacterControlsActions instance)
@@ -248,5 +277,6 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnSneak(InputAction.CallbackContext context);
     }
 }
