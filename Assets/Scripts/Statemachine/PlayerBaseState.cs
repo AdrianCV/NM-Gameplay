@@ -1,18 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBaseState : MonoBehaviour
+public abstract class PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    protected PlayerStateMachine _ctx;
+    protected StateFactory _factory;
+
+    public PlayerBaseState(PlayerStateMachine currentContext, StateFactory stateFactory)
     {
-        
+        _ctx = currentContext;
+        _factory = stateFactory;
     }
 
-    // Update is called once per frame
-    void Update()
+    public abstract void EnterState();
+
+    public abstract void UpdateState();
+
+    public abstract void FixedUpdateState();
+
+    public abstract void ExitState();
+
+    public abstract void CheckSwitchState();
+
+    public abstract void CollisionEnter(PlayerStateMachine manager, Collision collision);
+
+    protected void SwitchState(PlayerBaseState newState)
     {
-        
+        ExitState();
+
+        newState.EnterState();
+
+        _ctx.CurrentState = newState;
     }
 }
