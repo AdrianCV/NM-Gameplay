@@ -168,6 +168,7 @@ MonoBehaviour:
   _death: {fileID: 0}
   _gameOver: {fileID: 0}
   _win: {fileID: 0}
+  _colorWheelController: {fileID: 0}
   _paintSound: {fileID: 0}
   _jumpSound: {fileID: 0}
 --- !u!82 &3817915895690314281

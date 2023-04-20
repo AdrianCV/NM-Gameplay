@@ -1,4 +1,3 @@
-using System.Security.AccessControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -27,6 +26,8 @@ public class PlayerStateMachine : MonoBehaviour
     float _rotationFactorPerFrame = 1.0f;
     float _groundedGravity = -0.05f;
 
+    bool _wheelIsOpen;
+
     [SerializeField] bool _grounded;
 
 
@@ -49,6 +50,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] GameObject _death;
     [SerializeField] GameObject _gameOver;
     [SerializeField] GameObject _win;
+    [SerializeField] ColorWheelController _colorWheelController;
 
     [SerializeField] AudioClip _paintSound;
     [SerializeField] AudioClip _jumpSound;
@@ -59,10 +61,12 @@ public class PlayerStateMachine : MonoBehaviour
     public bool IsMovementPressed { get { return _isMovementPressed; } }
     public bool IsRunPressed { get { return _isrunPressed; } }
     public bool Grounded { get { return _grounded; } }
+    public bool WheelIsOpen { get { return _wheelIsOpen; } set { _wheelIsOpen = value; } }
     public float GroundedGravity { get { return _groundedGravity; } }
     public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
     public Vector3 CurrentMovement { get { return _currentMovement; } }
     public Vector3 CurrentRunMovement { get { return _currentRunMovement; } }
+    public Material CurrentMaterial { get { return _currentMat; } set { _currentMat = value; } }
     public Animator Animator { get { return _animator; } }
     public Transform Transform { get { return transform; } }
     public Rigidbody RB { get { return _rb; } }
@@ -124,7 +128,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Paint()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _currentMat != null && !_wheelIsOpen)
         {
             Collider[] _colliders = Physics.OverlapSphere(transform.position, _radius, _layer);
 

@@ -22,5 +22,9 @@ public class PaintedObject : MonoBehaviour
         {
             GetComponent<Collider>().isTrigger = true;
         }
+        else
+        {
+            GetComponent<Collider>().isTrigger = false;
+        }
     }
 }
