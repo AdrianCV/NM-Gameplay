@@ -32,7 +32,7 @@ public class ColorWheelButtonController : MonoBehaviour
     {
         selected = true;
         ColorWheelController.colorID = id;
-        Debug.Log(id);
+        // Debug.Log(id);
     }
 
     public void DeSelected()
