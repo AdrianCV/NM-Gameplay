@@ -1211,10 +1211,6 @@ PrefabInstance:
       propertyPath: _currentMat
       value: 
       objectReference: {fileID: 2100000, guid: 6407f9cabe34731469dd0c13039696d4, type: 2}
-    - target: {fileID: 5922803237536384319, guid: 53eacab5533603844b32ea9e8e14e621, type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 5922803238308092083, guid: 53eacab5533603844b32ea9e8e14e621, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
