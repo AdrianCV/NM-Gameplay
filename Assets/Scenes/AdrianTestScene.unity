@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 350652970}
   - component: {fileID: 350652969}
   - component: {fileID: 350652968}
-  - component: {fileID: 350652967}
   m_Layer: 0
   m_Name: Painting
   m_TagString: Painting
@@ -143,19 +142,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &350652967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 350652966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f4e646834889e4482f3d03a225ae76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneToLoad: SampleScene
 --- !u!65 &350652968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -592,5 +578,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f41b3129781536e418b94357f2fd3b76, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5922803237536384306, guid: 53eacab5533603844b32ea9e8e14e621, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 53eacab5533603844b32ea9e8e14e621, type: 3}
