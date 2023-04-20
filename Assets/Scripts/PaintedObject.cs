@@ -9,7 +9,7 @@ public class PaintedObject : MonoBehaviour
 
     private void Update()
     {
-        if (GetComponent<Renderer>().sharedMaterial == CorrectMat)
+        if (GetComponent<Renderer>().sharedMaterials[0] == CorrectMat)
         {
             IsCorrect = true;
         }
@@ -21,6 +21,10 @@ public class PaintedObject : MonoBehaviour
         if (IsCorrect)
         {
             GetComponent<Collider>().isTrigger = true;
+        }
+        else
+        {
+            GetComponent<Collider>().isTrigger = false;
         }
     }
 }
