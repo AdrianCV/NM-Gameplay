@@ -17,7 +17,12 @@ public class ColorWheelController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            colorWheelSelected = !colorWheelSelected;
+            colorWheelSelected = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            colorWheelSelected = false;
         }
 
         if (colorWheelSelected)
