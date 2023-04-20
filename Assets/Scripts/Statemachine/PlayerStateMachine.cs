@@ -71,7 +71,7 @@ public class PlayerStateMachine : MonoBehaviour
         _characterInput.CharacterControls.Move.performed += OnMovementInput;
 
         _characterInput.CharacterControls.Run.started += OnRun;
-        _characterInput.CharacterControls.Run.canceled += OnRun;
+        // _characterInput.CharacterControls.Run.canceled += OnRun;
     }
 
     private void OnEnable()
@@ -101,12 +101,6 @@ public class PlayerStateMachine : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _currentState.CollisionEnter(this, other);
-
-        if (other.gameObject.tag == "Painting")
-        {
-            var sceneToLoad = other.gameObject.GetComponent<PaintingScript>().SceneToLoad;
-            SceneManager.LoadScene(sceneToLoad);
-        }
     }
 
 
@@ -124,54 +118,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     void OnRun(InputAction.CallbackContext context)
     {
-        _isrunPressed = context.ReadValueAsButton();
+        _isrunPressed = !_isrunPressed; //context.ReadValueAsButton();
     }
 
-    void HandleRotation()
-    {
-        var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
-
-        var skewedInput = matrix.MultiplyPoint3x4(_currentMovement);
-
-        var relative = (transform.position + skewedInput) - transform.position;
-
-        var rot = Quaternion.LookRotation(relative, Vector3.up);
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, _rotationFactorPerFrame * Time.deltaTime);
-    }
-
-    void OldRotation()
-    {
-        Vector3 positionToLookAt;
-
-        positionToLookAt.x = _currentMovement.x;
-        positionToLookAt.y = 0.0f;
-        positionToLookAt.z = _currentMovement.z;
-
-        Quaternion currentRotation = transform.rotation;
-
-        if (_isMovementPressed)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, _rotationFactorPerFrame);
-        }
-    }
-
-    void HandleGravity()
-    {
-        if (_characterController.isGrounded)
-        {
-            float groundedGravity = -0.05f;
-            _currentMovement.y = groundedGravity;
-            _currentRunMovement.y = groundedGravity;
-        }
-        else
-        {
-            float gravity = -9.8f;
-            _currentMovement.y += gravity;
-            _currentRunMovement.y += gravity;
-        }
-    }
 
     #region NewRot
     private void GatherInput()
