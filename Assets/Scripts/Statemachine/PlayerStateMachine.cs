@@ -136,7 +136,7 @@ public class PlayerStateMachine : MonoBehaviour
             {
                 if (col.transform.position.x > transform.position.x || col.transform.position.z > transform.position.z)
                 {
-                    col.GetComponent<Renderer>().sharedMaterials[0] = _currentMat;
+                    col.GetComponent<Renderer>().sharedMaterial = _currentMat;
 
                     if (_paintSound != null)
                     {
@@ -153,7 +153,7 @@ public class PlayerStateMachine : MonoBehaviour
         {
             _rb.velocity += Vector3.up * Physics.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        else if (_rb.velocity.y > 0)
         {
             _rb.velocity += Vector3.up * Physics.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
         }
