@@ -71,7 +71,7 @@ public class PlayerStateMachine : MonoBehaviour
         _characterInput.CharacterControls.Move.performed += OnMovementInput;
 
         _characterInput.CharacterControls.Run.started += OnRun;
-        _characterInput.CharacterControls.Run.canceled += OnRun;
+        // _characterInput.CharacterControls.Run.canceled += OnRun;
     }
 
     private void OnEnable()
@@ -124,7 +124,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     void OnRun(InputAction.CallbackContext context)
     {
-        _isrunPressed = context.ReadValueAsButton();
+        _isrunPressed = !_isrunPressed; //context.ReadValueAsButton();
     }
 
     void HandleRotation()
