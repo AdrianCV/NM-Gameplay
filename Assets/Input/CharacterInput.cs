@@ -46,9 +46,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sneak"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""87c9a0de-c414-4787-993b-940cbace433e"",
+                    ""id"": ""56cca3d2-2009-4928-a0fe-acc7c0550a9d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -135,12 +135,12 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3c3e8c0b-df3f-4a4c-a926-a0d7ad9cee16"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""id"": ""8899d1e7-01ce-46cf-9fc9-fe130d6b6ecf"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sneak"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -153,7 +153,7 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
         m_CharacterControls = asset.FindActionMap("CharacterControls", throwIfNotFound: true);
         m_CharacterControls_Move = m_CharacterControls.FindAction("Move", throwIfNotFound: true);
         m_CharacterControls_Run = m_CharacterControls.FindAction("Run", throwIfNotFound: true);
-        m_CharacterControls_Sneak = m_CharacterControls.FindAction("Sneak", throwIfNotFound: true);
+        m_CharacterControls_Jump = m_CharacterControls.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -217,14 +217,14 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
     private List<ICharacterControlsActions> m_CharacterControlsActionsCallbackInterfaces = new List<ICharacterControlsActions>();
     private readonly InputAction m_CharacterControls_Move;
     private readonly InputAction m_CharacterControls_Run;
-    private readonly InputAction m_CharacterControls_Sneak;
+    private readonly InputAction m_CharacterControls_Jump;
     public struct CharacterControlsActions
     {
         private @CharacterInput m_Wrapper;
         public CharacterControlsActions(@CharacterInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_CharacterControls_Move;
         public InputAction @Run => m_Wrapper.m_CharacterControls_Run;
-        public InputAction @Sneak => m_Wrapper.m_CharacterControls_Sneak;
+        public InputAction @Jump => m_Wrapper.m_CharacterControls_Jump;
         public InputActionMap Get() { return m_Wrapper.m_CharacterControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -240,9 +240,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
             @Run.started += instance.OnRun;
             @Run.performed += instance.OnRun;
             @Run.canceled += instance.OnRun;
-            @Sneak.started += instance.OnSneak;
-            @Sneak.performed += instance.OnSneak;
-            @Sneak.canceled += instance.OnSneak;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         private void UnregisterCallbacks(ICharacterControlsActions instance)
@@ -253,9 +253,9 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
             @Run.started -= instance.OnRun;
             @Run.performed -= instance.OnRun;
             @Run.canceled -= instance.OnRun;
-            @Sneak.started -= instance.OnSneak;
-            @Sneak.performed -= instance.OnSneak;
-            @Sneak.canceled -= instance.OnSneak;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         public void RemoveCallbacks(ICharacterControlsActions instance)
@@ -277,6 +277,6 @@ public partial class @CharacterInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnSneak(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

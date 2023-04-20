@@ -6,11 +6,16 @@ public class IdleState : PlayerBaseState
 
     public override void EnterState()
     {
+
     }
 
     public override void UpdateState()
     {
         CheckSwitchState();
+        if (_ctx.Grounded && !Input.GetButton("Jump"))
+        {
+            _ctx.RB.velocity = Vector3.zero;
+        }
     }
 
     public override void FixedUpdateState()

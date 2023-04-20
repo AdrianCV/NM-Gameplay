@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     CharacterController _characterController;
     Animator _animator;
     Rigidbody _rb;
+    AudioSource _audioSource;
 
 
     Vector2 _currentMovementInput;
@@ -25,10 +27,18 @@ public class PlayerStateMachine : MonoBehaviour
     float _rotationFactorPerFrame = 1.0f;
     float _groundedGravity = -0.05f;
 
+    [SerializeField] bool _grounded;
+
 
     [SerializeField] float _turnSpeed = 900f;
     [SerializeField] float _walkSpeed = 3.0f;
     [SerializeField] float _runSpeed = 5.0f;
+    [SerializeField] float _jumpForce = 400f;
+
+    [SerializeField] float _fallMultiplier = 2.5f;
+    [SerializeField] float _lowJumpMultiplier = 2f;
+
+    [SerializeField] float _groundCheckDistance;
 
     [SerializeField] float _radius;
 
@@ -40,11 +50,15 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] GameObject _gameOver;
     [SerializeField] GameObject _win;
 
+    [SerializeField] AudioClip _paintSound;
+    [SerializeField] AudioClip _jumpSound;
+
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public CharacterController CharacterController { get { return _characterController; } }
     public bool IsMovementPressed { get { return _isMovementPressed; } }
     public bool IsRunPressed { get { return _isrunPressed; } }
+    public bool Grounded { get { return _grounded; } }
     public float GroundedGravity { get { return _groundedGravity; } }
     public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
     public Vector3 CurrentMovement { get { return _currentMovement; } }
@@ -67,6 +81,7 @@ public class PlayerStateMachine : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
 
         _camera = Camera.main;
 
@@ -81,6 +96,8 @@ public class PlayerStateMachine : MonoBehaviour
 
         _characterInput.CharacterControls.Run.started += OnRun;
         // _characterInput.CharacterControls.Run.canceled += OnRun;
+
+        _characterInput.CharacterControls.Jump.started += OnJump;
     }
 
     private void OnEnable()
@@ -98,9 +115,15 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _currentState.UpdateState();
 
+        GroundCheck();
+        JumpGravity();
         GatherInput();
         Look();
+        Paint();
+    }
 
+    void Paint()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             Collider[] _colliders = Physics.OverlapSphere(transform.position, _radius, _layer);
@@ -110,8 +133,37 @@ public class PlayerStateMachine : MonoBehaviour
                 if (col.transform.position.x > transform.position.x || col.transform.position.z > transform.position.z)
                 {
                     col.GetComponent<Renderer>().sharedMaterial = _currentMat;
+
+                    if (_paintSound != null)
+                    {
+                        _audioSource.PlayOneShot(_paintSound);
+                    }
                 }
             }
+        }
+    }
+
+    void JumpGravity()
+    {
+        if (_rb.velocity.y < 0)
+        {
+            _rb.velocity += Vector3.up * Physics.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            _rb.velocity += Vector3.up * Physics.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    void GroundCheck()
+    {
+        if (Physics.Raycast(transform.position, -Vector3.up, _groundCheckDistance))
+        {
+            _grounded = true;
+        }
+        else
+        {
+            _grounded = false;
         }
     }
 
@@ -162,6 +214,18 @@ public class PlayerStateMachine : MonoBehaviour
         _isrunPressed = !_isrunPressed; //context.ReadValueAsButton();
     }
 
+    void OnJump(InputAction.CallbackContext context)
+    {
+        if (_grounded)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+
+            if (_jumpSound != null)
+            {
+                _audioSource.PlayOneShot(_jumpSound);
+            }
+        }
+    }
 
     #region NewRot
     private void GatherInput()
