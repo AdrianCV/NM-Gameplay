@@ -37,6 +37,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] Material _currentMat;
 
     [SerializeField] GameObject _death;
+    [SerializeField] GameObject _gameOver;
     [SerializeField] GameObject _win;
 
 
@@ -132,11 +133,13 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.tag == "Death")
         {
             // Do Game Over
-            _death.SetActive(true);
+            _death.GetComponent<DeathMove>().Speed = 0;
+            _gameOver.SetActive(true);
         }
         else if (other.gameObject.tag == "Win")
         {
             // Do Win
+            _death.GetComponent<DeathMove>().Speed = 0;
             _win.SetActive(true);
         }
     }
