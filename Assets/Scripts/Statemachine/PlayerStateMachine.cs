@@ -36,6 +36,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField] Material _currentMat;
 
+    [SerializeField] GameObject _death;
+    [SerializeField] GameObject _win;
+
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public CharacterController CharacterController { get { return _characterController; } }
@@ -129,10 +132,12 @@ public class PlayerStateMachine : MonoBehaviour
         if (other.gameObject.tag == "Death")
         {
             // Do Game Over
+            _death.SetActive(true);
         }
         else if (other.gameObject.tag == "Win")
         {
             // Do Win
+            _win.SetActive(true);
         }
     }
 
