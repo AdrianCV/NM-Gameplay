@@ -116,7 +116,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5922803237536384308}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ef9ba35314784dc408b53b1e468cd03f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -133,7 +133,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -151,15 +151,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c9faeeef4e2eb4b8c9bb7fa4616ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grounded: 0
   _turnSpeed: 900
   _walkSpeed: 7
   _runSpeed: 9
-  _radius: 0
+  _jumpForce: 10
+  _fallMultiplier: 3.5
+  _lowJumpMultiplier: 3
+  _groundCheckDistance: 1.1
+  _radius: 10
   _layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _currentMat: {fileID: 0}
   _death: {fileID: 0}
+  _gameOver: {fileID: 0}
   _win: {fileID: 0}
 --- !u!1 &5922803238308092086
 GameObject:

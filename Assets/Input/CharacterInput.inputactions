@@ -24,9 +24,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sneak",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "87c9a0de-c414-4787-993b-940cbace433e",
+                    "id": "56cca3d2-2009-4928-a0fe-acc7c0550a9d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -113,12 +113,12 @@
                 },
                 {
                     "name": "",
-                    "id": "3c3e8c0b-df3f-4a4c-a926-a0d7ad9cee16",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "8899d1e7-01ce-46cf-9fc9-fe130d6b6ecf",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Sneak",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

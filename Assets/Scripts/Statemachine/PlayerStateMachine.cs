@@ -1,3 +1,4 @@
+using System.Security.AccessControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -25,10 +26,18 @@ public class PlayerStateMachine : MonoBehaviour
     float _rotationFactorPerFrame = 1.0f;
     float _groundedGravity = -0.05f;
 
+    [SerializeField] bool _grounded;
+
 
     [SerializeField] float _turnSpeed = 900f;
     [SerializeField] float _walkSpeed = 3.0f;
     [SerializeField] float _runSpeed = 5.0f;
+    [SerializeField] float _jumpForce = 400f;
+
+    [SerializeField] float _fallMultiplier = 2.5f;
+    [SerializeField] float _lowJumpMultiplier = 2f;
+
+    [SerializeField] float _groundCheckDistance;
 
     [SerializeField] float _radius;
 
@@ -81,6 +90,8 @@ public class PlayerStateMachine : MonoBehaviour
 
         _characterInput.CharacterControls.Run.started += OnRun;
         // _characterInput.CharacterControls.Run.canceled += OnRun;
+
+        _characterInput.CharacterControls.Jump.started += OnJump;
     }
 
     private void OnEnable()
@@ -98,6 +109,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         _currentState.UpdateState();
 
+        GroundCheck();
+        JumpGravity();
         GatherInput();
         Look();
 
@@ -112,6 +125,30 @@ public class PlayerStateMachine : MonoBehaviour
                     col.GetComponent<Renderer>().sharedMaterial = _currentMat;
                 }
             }
+        }
+    }
+
+    void JumpGravity()
+    {
+        if (_rb.velocity.y < 0)
+        {
+            _rb.velocity += Vector3.up * Physics.gravity.y * (_fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            _rb.velocity += Vector3.up * Physics.gravity.y * (_lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    void GroundCheck()
+    {
+        if (Physics.Raycast(transform.position, -Vector3.up, _groundCheckDistance))
+        {
+            _grounded = true;
+        }
+        else
+        {
+            _grounded = false;
         }
     }
 
@@ -162,6 +199,13 @@ public class PlayerStateMachine : MonoBehaviour
         _isrunPressed = !_isrunPressed; //context.ReadValueAsButton();
     }
 
+    void OnJump(InputAction.CallbackContext context)
+    {
+        if (_grounded)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+        }
+    }
 
     #region NewRot
     private void GatherInput()
