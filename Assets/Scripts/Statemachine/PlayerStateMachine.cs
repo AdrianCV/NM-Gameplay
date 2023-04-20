@@ -14,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     CharacterController _characterController;
     Animator _animator;
     Rigidbody _rb;
+    AudioSource _audioSource;
 
 
     Vector2 _currentMovementInput;
@@ -49,11 +50,15 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] GameObject _gameOver;
     [SerializeField] GameObject _win;
 
+    [SerializeField] AudioClip _paintSound;
+    [SerializeField] AudioClip _jumpSound;
+
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public CharacterController CharacterController { get { return _characterController; } }
     public bool IsMovementPressed { get { return _isMovementPressed; } }
     public bool IsRunPressed { get { return _isrunPressed; } }
+    public bool Grounded { get { return _grounded; } }
     public float GroundedGravity { get { return _groundedGravity; } }
     public float CurrentMovementY { get { return _currentMovement.y; } set { _currentMovement.y = value; } }
     public Vector3 CurrentMovement { get { return _currentMovement; } }
@@ -76,6 +81,7 @@ public class PlayerStateMachine : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
 
         _camera = Camera.main;
 
@@ -113,7 +119,11 @@ public class PlayerStateMachine : MonoBehaviour
         JumpGravity();
         GatherInput();
         Look();
+        Paint();
+    }
 
+    void Paint()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             Collider[] _colliders = Physics.OverlapSphere(transform.position, _radius, _layer);
@@ -123,6 +133,11 @@ public class PlayerStateMachine : MonoBehaviour
                 if (col.transform.position.x > transform.position.x || col.transform.position.z > transform.position.z)
                 {
                     col.GetComponent<Renderer>().sharedMaterial = _currentMat;
+
+                    if (_paintSound != null)
+                    {
+                        _audioSource.PlayOneShot(_paintSound);
+                    }
                 }
             }
         }
@@ -204,6 +219,11 @@ public class PlayerStateMachine : MonoBehaviour
         if (_grounded)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+
+            if (_jumpSound != null)
+            {
+                _audioSource.PlayOneShot(_jumpSound);
+            }
         }
     }
 
