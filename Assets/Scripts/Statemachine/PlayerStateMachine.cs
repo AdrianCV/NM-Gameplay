@@ -30,6 +30,11 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] float _walkSpeed = 3.0f;
     [SerializeField] float _runSpeed = 5.0f;
 
+    [SerializeField] float _radius;
+
+    [SerializeField] LayerMask _layer;
+
+    [SerializeField] Material _currentMat;
 
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
@@ -91,6 +96,25 @@ public class PlayerStateMachine : MonoBehaviour
 
         GatherInput();
         Look();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Collider[] _colliders = Physics.OverlapSphere(transform.position, _radius, _layer);
+
+            foreach (Collider col in _colliders)
+            {
+                if (col.transform.position.x > transform.position.x || col.transform.position.z > transform.position.z)
+                {
+                    col.GetComponent<Renderer>().material = _currentMat;
+                }
+            }
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 
     void FixedUpdate()
