@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -108,31 +109,11 @@ public class PlayerStateMachine : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _currentState.CollisionEnter(this, other);
-    }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "SusItem")
+        if (other.gameObject.tag == "Painting")
         {
-            _touchingSusItem = true;
-            _susItem = other.gameObject;
-        }
-        else if (other.tag == "NotSusItem")
-        {
-            _touchingNotSusItem = true;
-            _notSusItem = other.gameObject;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "SusItem")
-        {
-            _touchingSusItem = false;
-        }
-        else if (other.tag == "NotSusItem")
-        {
-            _touchingNotSusItem = false;
+            var sceneToLoad = other.gameObject.GetComponent<PaintingScript>().SceneToLoad;
+            SceneManager.LoadScene(sceneToLoad);
         }
     }
 
