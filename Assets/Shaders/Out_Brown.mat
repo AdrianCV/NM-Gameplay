@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Out_GrassGreen
+  m_Name: Out_Brown
   m_Shader: {fileID: -6465566751694194690, guid: a821bc6a5480b154694440337759ba86, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -49,7 +49,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scale: 1.005
+    - _Scale: 1.03
     m_Colors:
-    - _Color: {r: 0.13725491, g: 0.23529412, b: 0.14901961, a: 1}
+    - _Color: {r: 0.14150941, g: 0.041968096, b: 0.020692414, a: 1}
   m_BuildTextureStacks: []
