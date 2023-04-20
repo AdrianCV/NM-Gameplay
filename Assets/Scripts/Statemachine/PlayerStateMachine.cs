@@ -30,14 +30,6 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] float _walkSpeed = 3.0f;
     [SerializeField] float _runSpeed = 5.0f;
 
-    [SerializeField] GameObject _susBox;
-    [SerializeField] GameObject _notSusBox;
-
-    bool _touchingSusItem;
-    GameObject _susItem;
-    bool _touchingNotSusItem;
-    GameObject _notSusItem;
-
 
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
@@ -164,7 +156,6 @@ public class PlayerStateMachine : MonoBehaviour
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, _rotationFactorPerFrame);
         }
     }
-
 
     void HandleGravity()
     {
