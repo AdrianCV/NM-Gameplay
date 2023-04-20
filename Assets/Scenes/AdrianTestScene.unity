@@ -296,8 +296,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e60ae0c5a07b409322e7b3121b1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentMaterial: {fileID: 0}
   CorrectMat: {fileID: 2100000, guid: 6407f9cabe34731469dd0c13039696d4, type: 2}
-  _realCorrectMat: {fileID: 0}
+  _realCorrectMat: {fileID: 2100000, guid: 02d3e5a23f237ab46a904549a50eff4b, type: 2}
   IsCorrect: 0
 --- !u!114 &350652973
 MonoBehaviour:
@@ -1535,8 +1536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e60ae0c5a07b409322e7b3121b1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentMaterial: {fileID: 0}
   CorrectMat: {fileID: 2100000, guid: 636dd4711a1688d478d3896ac1d7d68f, type: 2}
-  _realCorrectMat: {fileID: 0}
+  _realCorrectMat: {fileID: 2100000, guid: d72e1df0b2303a84e823e1c1504ce21b, type: 2}
   IsCorrect: 0
 --- !u!1 &1770480294 stripped
 GameObject:
@@ -1568,6 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591e60ae0c5a07b409322e7b3121b1fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentMaterial: {fileID: 0}
   CorrectMat: {fileID: 2100000, guid: 1b0567bc7c708db48b9b15034ae7ca0f, type: 2}
   _realCorrectMat: {fileID: 2100000, guid: 0c9c68f1fd317ac4fb757f3e8546d0ba, type: 2}
   IsCorrect: 0

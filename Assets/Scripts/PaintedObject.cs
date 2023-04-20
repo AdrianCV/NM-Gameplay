@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class PaintedObject : MonoBehaviour
 {
+    [HideInInspector] public Material CurrentMaterial;
     public Material CorrectMat;
     [SerializeField] Material _realCorrectMat;
     public bool IsCorrect;
 
-    private void Update()
+
+    void Start()
     {
-        if (GetComponent<Renderer>().sharedMaterial == CorrectMat)
+        CurrentMaterial = GetComponent<Renderer>().sharedMaterial;
+    }
+
+    void Update()
+    {
+        if (CurrentMaterial == CorrectMat)
         {
+            GetComponent<Renderer>().sharedMaterial = _realCorrectMat;
             IsCorrect = true;
         }
         else
         {
+            GetComponent<Renderer>().sharedMaterial = CurrentMaterial;
             IsCorrect = false;
-        }
-
-        if (IsCorrect)
-        {
-            GetComponent<Renderer>().sharedMaterial = _realCorrectMat;
         }
     }
 }
