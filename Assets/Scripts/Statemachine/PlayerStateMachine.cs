@@ -52,7 +52,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] GameObject _win;
     [SerializeField] ColorWheelController _colorWheelController;
 
-    [SerializeField] AudioClip _paintSound;
+    [SerializeField] AudioClip[] _paintSounds;
     [SerializeField] AudioClip _jumpSound;
 
 
@@ -138,9 +138,9 @@ public class PlayerStateMachine : MonoBehaviour
                 {
                     col.GetComponent<Renderer>().sharedMaterial = _currentMat;
 
-                    if (_paintSound != null)
+                    if (_paintSounds != null)
                     {
-                        _audioSource.PlayOneShot(_paintSound);
+                        _audioSource.PlayOneShot(_paintSounds[Random.Range(0, _paintSounds.Length)]);
                     }
                 }
             }

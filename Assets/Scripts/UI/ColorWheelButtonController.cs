@@ -11,6 +11,10 @@ public class ColorWheelButtonController : MonoBehaviour
     private Image image;
     public Color thisColor;
 
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _hoverSound;
+    [SerializeField] AudioClip _selectSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +34,7 @@ public class ColorWheelButtonController : MonoBehaviour
 
     public void Selected()
     {
+        _audioSource.PlayOneShot(_selectSound);
         selected = true;
         ColorWheelController.colorID = id;
         // Debug.Log(id);
@@ -43,6 +48,7 @@ public class ColorWheelButtonController : MonoBehaviour
 
     public void HoverEnter()
     {
+        _audioSource.PlayOneShot(_hoverSound);
         anim.SetBool("Hover", true);
     }
 

@@ -10,10 +10,19 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] GameObject _controls;
     [SerializeField] GameObject _credits;
     [SerializeField] GameObject _backButton;
+    [SerializeField] AudioClip _startSound;
+
+    AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void StartGame()
     {
-        SceneManager.LoadScene(_nameOfGameScene);
+        _audioSource.PlayOneShot(_startSound);
+        StartCoroutine(WaitForStart());
     }
 
     public void Controls()
@@ -41,5 +50,11 @@ public class MainMenuScript : MonoBehaviour
         _controls.SetActive(false);
         _credits.SetActive(false);
         _backButton.SetActive(false);
+    }
+
+    IEnumerator WaitForStart()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(_nameOfGameScene);
     }
 }

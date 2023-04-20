@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grounded: 0
   _turnSpeed: 900
-  _walkSpeed: 7
-  _runSpeed: 9
+  _walkSpeed: 9
+  _runSpeed: 11
   _jumpForce: 10
   _fallMultiplier: 3.5
   _lowJumpMultiplier: 3
@@ -169,7 +169,10 @@ MonoBehaviour:
   _gameOver: {fileID: 0}
   _win: {fileID: 0}
   _colorWheelController: {fileID: 0}
-  _paintSound: {fileID: 0}
+  _paintSounds:
+  - {fileID: 8300000, guid: 7c767418f2f623f4fbc16219571c79e3, type: 3}
+  - {fileID: 8300000, guid: 542be7e9e577fd44a879cd69b61876a6, type: 3}
+  - {fileID: 8300000, guid: 35b0867cb11f7d44b901256f228f64b3, type: 3}
   _jumpSound: {fileID: 0}
 --- !u!82 &3817915895690314281
 AudioSource:
