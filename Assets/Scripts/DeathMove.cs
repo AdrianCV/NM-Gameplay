@@ -4,19 +4,11 @@ using UnityEngine;
 
 public class DeathMove : MonoBehaviour
 {
-    [SerializeField] float _speed;
+    public float Speed;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(_speed / 100, 0, _speed / 100);
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            _speed = 0;
-        }
+        transform.position += new Vector3(Speed / 100, 0, Speed / 100);
     }
 }

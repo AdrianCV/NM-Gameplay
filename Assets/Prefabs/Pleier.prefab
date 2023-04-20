@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5922803237536384318}
   - component: {fileID: 5922803237536384319}
   - component: {fileID: 5922803237536384316}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pleier
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -154,6 +154,13 @@ MonoBehaviour:
   _turnSpeed: 900
   _walkSpeed: 7
   _runSpeed: 9
+  _radius: 0
+  _layer:
+    serializedVersion: 2
+    m_Bits: 0
+  _currentMat: {fileID: 0}
+  _death: {fileID: 0}
+  _win: {fileID: 0}
 --- !u!1 &5922803238308092086
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +173,7 @@ GameObject:
   - component: {fileID: 5922803238308092082}
   - component: {fileID: 5922803238308092083}
   - component: {fileID: 5922803238308092080}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

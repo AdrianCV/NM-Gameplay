@@ -17,5 +17,10 @@ public class PaintedObject : MonoBehaviour
         {
             IsCorrect = false;
         }
+
+        if (IsCorrect)
+        {
+            GetComponent<Collider>().isTrigger = true;
+        }
     }
 }
