@@ -105,7 +105,7 @@ public class PlayerStateMachine : MonoBehaviour
             {
                 if (col.transform.position.x > transform.position.x || col.transform.position.z > transform.position.z)
                 {
-                    col.GetComponent<Renderer>().material = _currentMat;
+                    col.GetComponent<Renderer>().sharedMaterial = _currentMat;
                 }
             }
         }
@@ -125,6 +125,15 @@ public class PlayerStateMachine : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         _currentState.CollisionEnter(this, other);
+
+        if (other.gameObject.tag == "Death")
+        {
+            // Do Game Over
+        }
+        else if (other.gameObject.tag == "Win")
+        {
+            // Do Win
+        }
     }
 
 
