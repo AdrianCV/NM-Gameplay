@@ -5,7 +5,7 @@ using UnityEngine;
 public class LiftObjectWhenPainted : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
-    [SerializeField] GameObject _objectToLift;
+    [SerializeField] GameObject[] _objectsToLift;
     [SerializeField] Vector3 _positionToLiftTo;
 
 
@@ -21,7 +21,10 @@ public class LiftObjectWhenPainted : MonoBehaviour
     {
         if (_paintedObject.IsCorrect)
         {
-            _objectToLift.transform.position = Vector3.Lerp(_objectToLift.transform.position, _positionToLiftTo, _moveSpeed * Time.deltaTime);
+            foreach (var _objectToLift in _objectsToLift)
+            {
+                _objectToLift.transform.position = Vector3.Lerp(_objectToLift.transform.position, _positionToLiftTo, _moveSpeed * Time.deltaTime);
+            }
         }
     }
 }

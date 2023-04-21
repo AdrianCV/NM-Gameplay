@@ -1622,7 +1622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 3
-  _objectToLift: {fileID: 1808437753}
+  _objectsToLift:
+  - {fileID: 1808437753}
   _positionToLiftTo: {x: 0, y: 1, z: 0}
 --- !u!114 &1765538413
 MonoBehaviour:
