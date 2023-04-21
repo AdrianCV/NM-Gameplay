@@ -423,10 +423,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2059353969412478180, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353969412478180, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.b
+      value: 0.049153566
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353969412478180, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353969412478180, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2059353969669529632, guid: 73855085fcda615498a212990c58d9c2, type: 3}
       propertyPath: _player
       value: 
       objectReference: {fileID: 602114735}
+    - target: {fileID: 2059353969681484674, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353969681484674, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353969681484674, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353969681484674, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353970123860351, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353970123860351, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353970123860351, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.g
+      value: 0.19758391
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059353970123860351, guid: 73855085fcda615498a212990c58d9c2, type: 3}
+      propertyPath: thisColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73855085fcda615498a212990c58d9c2, type: 3}
 --- !u!1 &705507993
