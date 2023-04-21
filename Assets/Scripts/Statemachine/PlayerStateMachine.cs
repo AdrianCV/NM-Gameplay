@@ -54,6 +54,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField] AudioClip[] _paintSounds;
     [SerializeField] AudioClip _jumpSound;
+    [SerializeField] AudioClip _deathSound;
+    [SerializeField] AudioClip _winSound;
 
 
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
@@ -191,12 +193,14 @@ public class PlayerStateMachine : MonoBehaviour
             // Do Game Over
             _death.GetComponent<DeathMove>().Speed = 0;
             _gameOver.SetActive(true);
+            _audioSource.PlayOneShot(_deathSound);
         }
         else if (other.gameObject.tag == "Win")
         {
             // Do Win
             _death.GetComponent<DeathMove>().Speed = 0;
             _win.SetActive(true);
+            _audioSource.PlayOneShot(_winSound);
         }
     }
 
