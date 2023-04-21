@@ -5,6 +5,7 @@ public class MovingState : PlayerBaseState
     public MovingState(PlayerStateMachine currentContext, StateFactory stateFactory) : base(currentContext, stateFactory) { }
     public override void EnterState()
     {
+        _ctx.Animator.SetBool("IsRunning", true);
     }
 
     public override void UpdateState()
@@ -37,7 +38,7 @@ public class MovingState : PlayerBaseState
 
     public override void ExitState()
     {
-
+        _ctx.Animator.SetBool("IsRunning", false);
     }
 
     public override void CheckSwitchState()

@@ -140,6 +140,15 @@ public class PlayerStateMachine : MonoBehaviour
                 {
                     col.GetComponent<PaintedObject>().CurrentMaterial = _currentMat;
 
+                    if (IsMovementPressed)
+                    {
+                        _animator.SetTrigger("RunAttack");
+                    }
+                    else
+                    {
+                        _animator.SetTrigger("Attack1");
+                    }
+
                     if (_paintSounds != null)
                     {
                         _audioSource.PlayOneShot(_paintSounds[Random.Range(0, _paintSounds.Length)]);
@@ -163,7 +172,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     void GroundCheck()
     {
-        if (Physics.Raycast(transform.position, -Vector3.up, _groundCheckDistance))
+        if (Physics.Raycast(transform.position + new Vector3(0, 1, 0), -Vector3.up, _groundCheckDistance))
         {
             _grounded = true;
         }
