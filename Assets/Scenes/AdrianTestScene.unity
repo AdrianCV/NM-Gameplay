@@ -1686,7 +1686,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f843fe5bb46c384c8d7966e4343977b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clipToBePlayed: {fileID: 8300000, guid: 0372698859f885448a80c91f70996e20, type: 3}
+  _clipsToBePlayed:
+  - {fileID: 8300000, guid: 0372698859f885448a80c91f70996e20, type: 3}
+  - {fileID: 8300000, guid: f0ba3e5bcb2a1a54d9864c03f161e9fe, type: 3}
   _hasPlayedAudio: 0
 --- !u!82 &1770480304
 AudioSource:
