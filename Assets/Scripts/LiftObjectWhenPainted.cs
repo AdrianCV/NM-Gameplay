@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PaintedObject))]
 public class LiftObjectWhenPainted : MonoBehaviour
 {
-    [SerializeField] float _moveSpeed;
+    [SerializeField] float _moveSpeed = 1f;
     [SerializeField] GameObject[] _objectsToLift;
     [SerializeField] Vector3 _positionToLiftTo;
-    List<Vector3> _startPositions;
+    [SerializeField] List<Vector3> _startPositions;
 
 
     PaintedObject _paintedObject;

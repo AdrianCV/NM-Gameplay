@@ -13,6 +13,7 @@ public class PaintedObject : MonoBehaviour
     void Start()
     {
         CurrentMaterial = GetComponent<Renderer>().sharedMaterial;
+        gameObject.layer = 6;
     }
 
     void Update()

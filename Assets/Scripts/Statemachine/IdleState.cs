@@ -6,7 +6,7 @@ public class IdleState : PlayerBaseState
 
     public override void EnterState()
     {
-
+        _ctx.Animator.SetBool("IsIdle", true);
     }
 
     public override void UpdateState()
@@ -25,7 +25,7 @@ public class IdleState : PlayerBaseState
 
     public override void ExitState()
     {
-
+        _ctx.Animator.SetBool("IsIdle", false);
     }
 
     public override void CheckSwitchState()
