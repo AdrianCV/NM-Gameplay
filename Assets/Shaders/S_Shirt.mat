@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: S_Pinetree
+  m_Name: S_Shirt
   m_Shader: {fileID: -6465566751694194690, guid: 4aa46d33b0afb5e49bb0703218e42e0e, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,16 +34,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_38BD3441: 0.271
-    - Vector1_CF8B0D8D: 3.02
-    - Vector1_ED5ABFD9: 0.019
-    - Vector1_F3F6B787: 0.47
+    - Vector1_38BD3441: 0.219
+    - Vector1_CF8B0D8D: 2.8
+    - Vector1_ED5ABFD9: 0.066
+    - Vector1_F3F6B787: 0.42
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - Color_28180829: {r: 0.29411766, g: 0.42352942, b: 0.06666667, a: 1}
-    - Color_57D43A16: {r: 0.77254903, g: 0.8117647, b: 0.5647059, a: 0}
-    - Color_F689E8B9: {r: 0.53333336, g: 0.6666667, b: 0.3372549, a: 1}
+    - Color_28180829: {r: 0.11764706, g: 0.0627451, b: 0.25490198, a: 1}
+    - Color_57D43A16: {r: 0.5960306, g: 0.6717782, b: 0.6981132, a: 0}
+    - Color_F689E8B9: {r: 0.3419811, g: 0.43152514, b: 0.5, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6355765587847706798
 MonoBehaviour:
