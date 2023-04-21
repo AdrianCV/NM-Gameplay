@@ -7,7 +7,7 @@ public class PlaySoundWhenPainted : MonoBehaviour
 {
     PaintedObject _paintedObject;
     AudioSource _audioSource;
-    [SerializeField] AudioClip _clipToBePlayed;
+    [SerializeField] AudioClip[] _clipsToBePlayed;
     [SerializeField] bool _hasPlayedAudio;
 
     void Start()
@@ -20,7 +20,7 @@ public class PlaySoundWhenPainted : MonoBehaviour
     {
         if (_paintedObject.IsCorrect && !_hasPlayedAudio)
         {
-            _audioSource.PlayOneShot(_clipToBePlayed);
+            _audioSource.PlayOneShot(_clipsToBePlayed[Random.Range(0, _clipsToBePlayed.Length)]);
             _hasPlayedAudio = true;
         }
     }
