@@ -236,8 +236,8 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (_grounded)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
             _animator.SetTrigger("Jump");
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
 
             if (_jumpSound != null)
             {
