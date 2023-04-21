@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource), typeof(PaintedObject))]
 public class PlaySoundWhenPainted : MonoBehaviour
 {
     PaintedObject _paintedObject;

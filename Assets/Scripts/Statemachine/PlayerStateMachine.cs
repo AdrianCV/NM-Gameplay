@@ -203,6 +203,7 @@ public class PlayerStateMachine : MonoBehaviour
             _death.GetComponent<DeathMove>().Speed = 0;
             _gameOver.SetActive(true);
             _audioSource.PlayOneShot(_deathSound);
+            _animator.SetTrigger("Death");
         }
         else if (other.gameObject.tag == "Win")
         {
@@ -236,6 +237,7 @@ public class PlayerStateMachine : MonoBehaviour
         if (_grounded)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+            _animator.SetTrigger("Jump");
 
             if (_jumpSound != null)
             {

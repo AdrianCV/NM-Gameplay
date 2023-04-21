@@ -641,9 +641,9 @@ GameObject:
   - component: {fileID: 3958989444732764838}
   - component: {fileID: 3958989444732764839}
   - component: {fileID: 3958989444732764833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Munch
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,7 +684,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &3958989444732764835
 CapsuleCollider:
@@ -693,7 +693,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4192937278170759148}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ef9ba35314784dc408b53b1e468cd03f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.6

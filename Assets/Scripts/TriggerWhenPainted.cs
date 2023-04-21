@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PaintedObject))]
 public class TriggerWhenPainted : MonoBehaviour
 {
     PaintedObject _paintedObject;
