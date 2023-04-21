@@ -7,6 +7,7 @@ public class LiftObjectWhenPainted : MonoBehaviour
     [SerializeField] float _moveSpeed;
     [SerializeField] GameObject[] _objectsToLift;
     [SerializeField] Vector3 _positionToLiftTo;
+    List<Vector3> _startPositions;
 
 
     PaintedObject _paintedObject;
@@ -14,6 +15,10 @@ public class LiftObjectWhenPainted : MonoBehaviour
     void Start()
     {
         _paintedObject = GetComponent<PaintedObject>();
+        for (int i = 0; i < _objectsToLift.Length; i++)
+        {
+            _startPositions.Add(_objectsToLift[i].transform.position);
+        }
     }
 
     // Update is called once per frame
@@ -21,9 +26,9 @@ public class LiftObjectWhenPainted : MonoBehaviour
     {
         if (_paintedObject.IsCorrect)
         {
-            foreach (var _objectToLift in _objectsToLift)
+            for (int i = 0; i < _objectsToLift.Length; i++)
             {
-                _objectToLift.transform.position = Vector3.Lerp(_objectToLift.transform.position, _positionToLiftTo, _moveSpeed * Time.deltaTime);
+                _objectsToLift[i].transform.position = Vector3.Lerp(_objectsToLift[i].transform.position, _startPositions[i] + _positionToLiftTo, _moveSpeed * Time.deltaTime);
             }
         }
     }
