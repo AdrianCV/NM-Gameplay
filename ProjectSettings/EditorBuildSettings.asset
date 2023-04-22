@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AdrianTestScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Dagligstuen.unity
+    guid: d5b353d70dd09d34f871f51a80ebfaa9
+  - enabled: 1
+    path: Assets/Scenes/PaintScene.unity
+    guid: d9a7bc6f692c5a0418dd65d00c9c4e47
   m_configObjects: {}

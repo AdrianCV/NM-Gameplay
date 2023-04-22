@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -27,6 +30,19 @@ public class PlayerStateMachine : MonoBehaviour
     float _groundedGravity = -0.05f;
 
     bool _wheelIsOpen;
+
+    bool _isFadingIn;
+    bool _isFadingOut;
+
+    float _fadeStartTime;
+    float _fadeStartVolume;
+
+    [SerializeField] float _fadeDuration;
+    [SerializeField] float _maxDistance;
+
+    [SerializeField] Volume _volume;
+    Vignette _vignette;
+    ColorAdjustments _colorAdjustments;
 
     [SerializeField] bool _grounded;
 
@@ -89,6 +105,12 @@ public class PlayerStateMachine : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
 
+        if (_volume != null)
+        {
+            _volume.profile.TryGet(out _vignette);
+            _volume.profile.TryGet(out _colorAdjustments);
+        }
+
         _camera = Camera.main;
 
         _states = new StateFactory(this);
@@ -126,6 +148,7 @@ public class PlayerStateMachine : MonoBehaviour
         GatherInput();
         Look();
         Paint();
+        // ScaryDeath();
     }
 
     void Paint()
@@ -180,6 +203,68 @@ public class PlayerStateMachine : MonoBehaviour
         {
             _grounded = false;
         }
+    }
+
+    void ScaryDeath()
+    {
+        if (_vignette != null)
+        {
+            _vignette.intensity.value = _audioSource.volume;
+            _colorAdjustments.saturation.value = _audioSource.volume * -100;
+        }
+
+        RaycastHit[] hit = Physics.SphereCastAll(transform.position, 15, new Vector3(0, 0, 0), 0, 7);
+
+        // print(hit.point);
+
+        var closestPoint = Vector3.positiveInfinity;
+
+        foreach (RaycastHit point in hit)
+        {
+            if (Vector3.Distance(transform.position, point.point) < Vector3.Distance(transform.position, closestPoint))
+            {
+                closestPoint = point.point;
+            }
+        }
+
+
+
+        float distance = Vector3.Distance(transform.position, closestPoint);
+        float volume;
+
+        print(distance);
+
+        if (distance > _maxDistance)
+        {
+            if (!_isFadingOut)
+            {
+                _isFadingOut = true;
+                _isFadingIn = false;
+                _fadeStartTime = Time.time;
+                _fadeStartVolume = _audioSource.volume;
+            }
+
+            float fadeElapsedTime = Time.time - _fadeStartTime;
+            float fadePercentage = Mathf.Clamp01(fadeElapsedTime / _fadeDuration);
+            volume = Mathf.Lerp(_fadeStartVolume, 0f, fadePercentage);
+        }
+        else
+        {
+            if (!_isFadingIn)
+            {
+                _isFadingIn = true;
+                _isFadingOut = false;
+                _fadeStartTime = Time.time;
+                _fadeStartVolume = _audioSource.volume;
+            }
+
+            // print("DAIJDA");
+            float fadeElapsedTime = Time.time - _fadeStartTime;
+            float fadePercentage = Mathf.Clamp01(fadeElapsedTime / _fadeDuration);
+            volume = Mathf.Lerp(_fadeStartVolume, 1f, fadePercentage);
+        }
+
+        _audioSource.volume = volume;
     }
 
     void OnDrawGizmos()

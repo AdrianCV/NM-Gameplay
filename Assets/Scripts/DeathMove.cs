@@ -36,7 +36,7 @@ public class DeathMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(Speed / 100, 0, Speed / 100);
+        transform.position += new Vector3((-Speed / 100) * 2, 0, -Speed / 100);
 
         _vignette.intensity.value = _audioSource.volume;
         _colorAdjustments.saturation.value = _audioSource.volume * -100;
