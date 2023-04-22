@@ -325,6 +325,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1231527326205027852, guid: 9841089d22e10c94f9145e0369537ad0, type: 3}
+      propertyPath: m_text
+      value: 'WASD - Movement
+
+
+        Q - Open color picker wheel
+
+
+        Left
+        click - Paint Objects (when in range)
+
+
+        E - Interact with painting
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 1231527327180461956, guid: 9841089d22e10c94f9145e0369537ad0, type: 3}
       propertyPath: m_Name
       value: Main Menu

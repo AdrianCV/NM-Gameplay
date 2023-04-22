@@ -289,6 +289,7 @@ public class PlayerStateMachine : MonoBehaviour
             _gameOver.SetActive(true);
             _audioSource.PlayOneShot(_deathSound);
             _animator.SetTrigger("Death");
+            this.enabled = false;
         }
         else if (other.gameObject.tag == "Win")
         {
