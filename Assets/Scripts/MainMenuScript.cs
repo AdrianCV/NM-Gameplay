@@ -11,6 +11,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] GameObject _credits;
     [SerializeField] GameObject _backButton;
     [SerializeField] AudioClip _startSound;
+    [SerializeField] GameObject _player;
 
     AudioSource _audioSource;
 
@@ -22,7 +23,8 @@ public class MainMenuScript : MonoBehaviour
     public void StartGame()
     {
         _audioSource.PlayOneShot(_startSound);
-        StartCoroutine(WaitForStart());
+        _player.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void Controls()
@@ -50,11 +52,5 @@ public class MainMenuScript : MonoBehaviour
         _controls.SetActive(false);
         _credits.SetActive(false);
         _backButton.SetActive(false);
-    }
-
-    IEnumerator WaitForStart()
-    {
-        yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(_nameOfGameScene);
     }
 }
