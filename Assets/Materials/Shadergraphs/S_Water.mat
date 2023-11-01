@@ -34,14 +34,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth_Fade: 4.66
-    - _Foam_Width: 25.27
-    - _Height: 0.06
-    - _Noise_Scale: 1.8
+    - _Depth_Fade: 10
+    - _Foam_Width: 25
+    - _Height: 0.05
+    - _Noise_Scale: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.71
-    - _Water_Scroll_Speed: 0.45
+    - _Smoothness: 0.85
+    - _Water_Scroll_Speed: 0.25
     m_Colors:
     - _Deep_Color: {r: 0.20784314, g: 0.4117647, b: 0.7372549, a: 0.84313726}
     - _Foam_Color: {r: 1, g: 1, b: 1, a: 0.9843137}
