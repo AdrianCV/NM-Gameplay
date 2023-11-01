@@ -9,6 +9,8 @@ public class TriggerWhenPainted : MonoBehaviour
 
     Collider _collider;
 
+    [SerializeField] bool _isTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,6 @@ public class TriggerWhenPainted : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _collider.isTrigger = _paintedObject.IsCorrect;
+        _collider.isTrigger = _isTrigger ? !_paintedObject.IsCorrect : _paintedObject.IsCorrect;
     }
 }

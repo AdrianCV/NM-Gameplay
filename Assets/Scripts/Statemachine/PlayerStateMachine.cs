@@ -178,10 +178,12 @@ namespace StateMachine
             {
                 if (!(Vector3.Dot(col.transform.position, Transform.forward) > 0)) continue;
 
-                if (col.GetComponent<PaintedObject>().CurrentMaterial != null)
+                /*if (col.GetComponent<PaintedObject>().CurrentMaterial != null)
                 {
                     col.GetComponent<PaintedObject>().CurrentMaterial = _currentMat;
                 }
+                */
+                StartCoroutine(col.GetComponent<PaintedObject>().ChangeMat(_currentMat));
 
 
                 _animator.SetTrigger(IsMovementPressed ? RunAttack : Attack1);

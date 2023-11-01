@@ -8,25 +8,44 @@ public class PaintedObject : MonoBehaviour
     public Material CorrectMat;
     [SerializeField] Material _realCorrectMat;
     public bool IsCorrect;
+    Renderer _renderer;
 
 
     void Start()
     {
+        _renderer = GetComponent<Renderer>();
         CurrentMaterial = GetComponent<Renderer>().sharedMaterial;
         gameObject.layer = 6;
     }
 
     void Update()
     {
+        /*
         if (CurrentMaterial == CorrectMat)
         {
-            GetComponent<Renderer>().sharedMaterial = _realCorrectMat;
+            _renderer.sharedMaterial = _realCorrectMat;
             IsCorrect = true;
         }
         else
         {
-            GetComponent<Renderer>().sharedMaterial = CurrentMaterial;
+            _renderer.sharedMaterial = CurrentMaterial;
             IsCorrect = false;
         }
+        */
+    }
+
+    public IEnumerator ChangeMat(Material currentMat)
+    {
+        yield return new WaitForSeconds(0.8f);
+        if (currentMat == CorrectMat)
+        {
+            _renderer.sharedMaterial = _realCorrectMat;
+            IsCorrect = true;
+        }
+        else
+        {
+            _renderer.sharedMaterial = CurrentMaterial;
+            IsCorrect = false;
+        } 
     }
 }
