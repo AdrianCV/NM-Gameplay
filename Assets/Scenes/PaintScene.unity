@@ -35061,6 +35061,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1898375375}
     - target: {fileID: 3958989444732764833, guid: fe605008ce5944148b1c2a9a0f4a8f7e, type: 3}
+      propertyPath: _runSpeed
+      value: 12.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958989444732764833, guid: fe605008ce5944148b1c2a9a0f4a8f7e, type: 3}
+      propertyPath: _jumpForce
+      value: 15.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3958989444732764833, guid: fe605008ce5944148b1c2a9a0f4a8f7e, type: 3}
       propertyPath: _maxDistance
       value: 15
       objectReference: {fileID: 0}
