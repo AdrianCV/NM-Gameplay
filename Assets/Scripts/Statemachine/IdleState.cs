@@ -1,12 +1,14 @@
+using StateMachine;
 using UnityEngine;
 
 public class IdleState : PlayerBaseState
 {
+    static readonly int IsIdle = Animator.StringToHash("IsIdle");
     public IdleState(PlayerStateMachine currentContext, StateFactory stateFactory) : base(currentContext, stateFactory) { }
 
     public override void EnterState()
     {
-        _ctx.Animator.SetBool("IsIdle", true);
+        _ctx.Animator.SetBool(IsIdle, true);
     }
 
     public override void UpdateState()
@@ -14,7 +16,7 @@ public class IdleState : PlayerBaseState
         CheckSwitchState();
         if (_ctx.Grounded && !Input.GetButton("Jump"))
         {
-            _ctx.RB.velocity = Vector3.zero;
+            _ctx.Rb.velocity = Vector3.zero;
         }
     }
 
@@ -25,7 +27,7 @@ public class IdleState : PlayerBaseState
 
     public override void ExitState()
     {
-        _ctx.Animator.SetBool("IsIdle", false);
+        _ctx.Animator.SetBool(IsIdle, false);
     }
 
     public override void CheckSwitchState()

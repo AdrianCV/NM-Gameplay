@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StateMachine;
 using UnityEngine;
 
 public class SneakState : PlayerBaseState
@@ -47,7 +48,7 @@ public class SneakState : PlayerBaseState
 
     void Move()
     {
-        _ctx.RB.MovePosition(_ctx.Transform.position + _ctx.Transform.forward * _ctx.PlayerInput.normalized.magnitude * (_ctx.IsRunPressed ? _ctx.RunMultiplier : _ctx.WalkMultiplier) * Time.deltaTime);
+        _ctx.Rb.MovePosition(_ctx.Transform.position + _ctx.Transform.forward * _ctx.PlayerInput.normalized.magnitude * (_ctx.IsRunPressed ? _ctx.RunMultiplier : _ctx.WalkMultiplier) * Time.deltaTime);
         // _ctx.NotifyObservers(Notif.Sound, _ctx.transform);
     }
 
