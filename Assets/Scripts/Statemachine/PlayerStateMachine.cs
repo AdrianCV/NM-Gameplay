@@ -174,9 +174,10 @@ namespace StateMachine
             var colliders = new Collider[maxColliders];
             var size = Physics.OverlapSphereNonAlloc(transform.position, _radius, colliders, _layer);
 
+            
             foreach (var col in colliders)
             {
-                if (!(Vector3.Dot(col.transform.position, Transform.forward) > 0)) continue;
+                if (!(Vector3.Dot(col.transform.position, Transform.forward) > 0) || col == null) continue;
 
                 /*if (col.GetComponent<PaintedObject>().CurrentMaterial != null)
                 {
@@ -186,7 +187,7 @@ namespace StateMachine
                 StartCoroutine(col.GetComponent<PaintedObject>().ChangeMat(_currentMat));
 
 
-                _animator.SetTrigger(IsMovementPressed ? RunAttack : Attack1);
+                _animator.SetTrigger(Attack1);
     
                 if (_paintSounds != null)
                 {
