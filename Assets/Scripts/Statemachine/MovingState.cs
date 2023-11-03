@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class MovingState : PlayerBaseState
 {
+    static readonly int IsRunning = Animator.StringToHash("IsRunning");
     public MovingState(PlayerStateMachine currentContext, StateFactory stateFactory) : base(currentContext, stateFactory) { }
     public override void EnterState()
     {
-        _ctx.Animator.SetBool("IsRunning", true);
+        _ctx.Animator.SetBool(IsRunning, true);
     }
 
     public override void UpdateState()
@@ -39,7 +40,8 @@ public class MovingState : PlayerBaseState
 
     public override void ExitState()
     {
-        _ctx.Animator.SetBool("IsRunning", false);
+        _ctx.Animator.SetBool(IsRunning, false);
+        _ctx.Rb.angularVelocity = Vector3.zero;
     }
 
     public override void CheckSwitchState()
